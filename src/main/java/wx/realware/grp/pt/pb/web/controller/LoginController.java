@@ -16,12 +16,12 @@ import java.util.Map;
 @Controller
 public class LoginController {
 
-   @Autowired
-    //用户登录
-    @RequestMapping(value="login.do", method = RequestMethod.POST)
-    public Map<String ,Object> login(String userName,String password){
-        UserEntry userEntry=
-
-    }
+//   @Autowired
+//    //用户登录
+//    @RequestMapping(value="login.do", method = RequestMethod.POST)
+//    public Map<String ,Object> login(String userName,String password){
+//        UserEntry userEntry=
+//
+//    }
 
 }
