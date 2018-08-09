@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-import wx.realware.grp.pt.pb.bean.common.Employee;
+import wx.realware.grp.pt.pb.bean.model.Employee;
 import wx.realware.grp.pt.pb.properties.Persion;
-import wx.realware.grp.pt.pb.respority.mapper.fingerconfig.EmployeeMapper;
+import wx.realware.grp.pt.pb.respority.mybatis.mapper.fingers.EmployeeMapper;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

@@ -1,4 +1,4 @@
-package wx.realware.grp.pt.pb.entry;
+package wx.realware.grp.pt.pb.entry.base.user;
 
 import org.hibernate.validator.constraints.NotBlank;
 import wx.realware.grp.pt.pb.common.avlid.group.AddGroup;

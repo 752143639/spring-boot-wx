@@ -1,4 +1,4 @@
-package wx.realware.grp.pt.pb.bean.common;
+package wx.realware.grp.pt.pb.bean.model;
 
 public class Employee {
     private int id;

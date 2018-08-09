@@ -1,7 +1,7 @@
-package wx.realware.grp.pt.pb.respority.mapper.fingerconfig;
+package wx.realware.grp.pt.pb.respority.mybatis.mapper.fingers;
 
 
-import wx.realware.grp.pt.pb.bean.common.Employee;
+import wx.realware.grp.pt.pb.bean.model.Employee;
 
 /**
  * 配置型Mybits实例

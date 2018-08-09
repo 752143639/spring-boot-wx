@@ -1,4 +1,4 @@
-package wx.realware.grp.pt.pb.jdbc.config;
+package wx.realware.grp.pt.pb.datasource.config.mybatis;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.mybatis.spring.boot.autoconfigure.ConfigurationCustomizer;

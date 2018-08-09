@@ -1,8 +1,8 @@
-package wx.realware.grp.pt.pb.respority.mapper.annotation;
+package wx.realware.grp.pt.pb.respority.mybatis.mapper.annotations;
 
 
  import org.apache.ibatis.annotations.*;
- import wx.realware.grp.pt.pb.bean.common.Department;
+ import wx.realware.grp.pt.pb.bean.model.Department;
 
 /**
  * 注解型mybtis实例
