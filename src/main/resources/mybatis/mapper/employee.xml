@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="wx.realware.grp.pt.pb.respority.mybatis.mapper.fingers.EmployeeMapper">
+<mapper namespace="wx.realware.grp.pt.pb.respority.mybatis.mapper.fingers.EmployeeDao">
     <!--
     namespace:命名空间(接口使用时，指定接口名称)
     id：唯一标示（接口使用时，指定接口方法）

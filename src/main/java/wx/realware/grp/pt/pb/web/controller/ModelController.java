@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import wx.realware.grp.pt.pb.bean.model.Employee;
-import wx.realware.grp.pt.pb.properties.Persion;
-import wx.realware.grp.pt.pb.respority.mybatis.mapper.fingers.EmployeeMapper;
+import wx.realware.grp.pt.pb.properties.config.Persion;
+import wx.realware.grp.pt.pb.respority.mybatis.mapper.fingers.EmployeeDao;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -28,7 +28,7 @@ import java.io.PrintWriter;
 public class ModelController {
 
     @Autowired
-    private EmployeeMapper employeeMapper;
+    private EmployeeDao employeeMapper;
     @Value("${persion.name}")
     private  String name;
     @Autowired

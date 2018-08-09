@@ -35,8 +35,8 @@ spring:
     static-locations: classpath:/static/,classpath:/views/
 #mybatis配置
 mybatis:
-  config-location: classpath:mybtis/mybtis.xml
-  mapper-locations: classpath:mybtis/mapper/employee.xml
+  config-location: classpath:mybatis/mybatis.xml
+  mapper-locations: classpath:mybatis/mapper/*.xml
 #server配置
 server:
    #tomcat配置

@@ -1,4 +1,4 @@
-package wx.realware.grp.pt.pb.properties;
+package wx.realware.grp.pt.pb.properties.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.PropertySource;

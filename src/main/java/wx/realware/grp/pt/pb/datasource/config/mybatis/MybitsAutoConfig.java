@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
  * 注解版，sql忽略大小写
  */
 @Configuration
-@MapperScan(value = "wx.realware.grp.pt.pb.respority.mapper")
+@MapperScan(value = "wx.realware.grp.pt.pb.respority.mybatis.mapper.fingers")
 public class MybitsAutoConfig {
 
     @Bean

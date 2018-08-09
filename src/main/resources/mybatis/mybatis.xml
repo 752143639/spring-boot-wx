@@ -15,7 +15,7 @@
     <!--环境变量配置，
        environment配置具体环境
        id="xxx：代表唯一标示，代表一种环境，可以使用environments default="xxx"指定使用的环境
-    ->
+    -->
     <!--<environments default="development">-->
         <!--<environment id="development">-->
            <!--事务管理类型，1.jdbc;2MANAGED – 这个配置就是直接使用了 JDBC 的提交和回滚设置，它依赖于从数据源得到的连接来管理事务作用域。
@@ -48,13 +48,7 @@
 <!--
   settings 设置项
 -->
-<settings>
-    <!--是否开启自动驼峰命名规则（camel case）映射，即从经典数据库列名 A_COLUMN 到经典 Java 属性名 aColumn 的类似映射。
-      数据库列名 A_COLUMN
-       Java 属性名 aColumn
-    -->
-    <setting name="mapUnderscoreToCamelCase" value="true"/>
-</settings>
+
 
 <!--别名处理器
 
@@ -66,7 +60,13 @@
      <package name=""></package>
 </typeAliases>
 -->
-
+    <settings>
+        <!--是否开启自动驼峰命名规则（camel case）映射，即从经典数据库列名 A_COLUMN 到经典 Java 属性名 aColumn 的类似映射。
+          数据库列名 A_COLUMN
+           Java 属性名 aColumn
+        -->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
    <!--通配多数据库厂商sql-->
     <databaseIdProvider type="DB_VENDOR">
         <!--为不同数据库起别名  对应mapper文件中的databaseId-->
@@ -87,4 +87,6 @@
    <package name=""
   </mappers >
   -->
+
+
 </configuration>
