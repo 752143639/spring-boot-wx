@@ -3,6 +3,7 @@ package wx.realware.grp.pt.pb.TransactionManagement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -34,30 +35,28 @@ import javax.sql.DataSource;
  指定方法：通过使用 propagation 属性设置，例如：
 
  @Transactional(propagation = Propagation.REQUIRED)
-
-
  */
-@EnableTransactionManagement
-public class CustomerTransactionManagement {
-    private Logger log= LoggerFactory.getLogger(CustomerTransactionManagement.class);
-    // 其中 dataSource 框架会自动为我们注入
-    @Bean
-    public PlatformTransactionManager txManager(DataSource dataSource) {
-        return new DataSourceTransactionManager(dataSource);
-    }
-
-    /**
-     * 测试使用的事务类型
-     * @param platformTransactionManager
-     * @return
-     */
-    @Bean
-    public Object testBean(PlatformTransactionManager platformTransactionManager){
-        log.info("当前使用的事务类型>>>>>>>>>>" + platformTransactionManager.getClass().getName());
-        return new Object();
-    }
-
-
-
-
-}
+// @EnableTransactionManagement
+//public class CustomerTransactionManagement {
+//    private Logger log= LoggerFactory.getLogger(CustomerTransactionManagement.class);
+//    // 其中 dataSource 框架会自动为我们注入
+//    @Bean
+//    public PlatformTransactionManager txManager(DataSource dataSource) {
+//        return new DataSourceTransactionManager(dataSource);
+//    }
+//
+//    /**
+//     * 测试使用的事务类型
+//     * @param platformTransactionManager
+//     * @return
+//     */
+//    @Bean
+//    public Object testBean(PlatformTransactionManager platformTransactionManager){
+//        log.info("当前使用的事务类型>>>>>>>>>>" + platformTransactionManager.getClass().getName());
+//        return new Object();
+//    }
+//
+//
+//
+//
+//}

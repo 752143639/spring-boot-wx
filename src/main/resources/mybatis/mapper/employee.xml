@@ -10,13 +10,31 @@
     #{xx}:从传过来的参数中xx属性取值
     -->
 <!--配置型mybits-->
- <select id="getEmpByid" resultType="wx.realware.grp.pt.pb.bean.model.Employee"  databaseId="mysql">
+ <select id="query"   databaseId="mysql">
       select * from employee where id =#{id}
-
  </select>
+    <select id="getEmpByid"  resultType="wx.realware.grp.pt.pb.bean.model.Employee" databaseId="mysql">
+        select * from employee where id =#{id}
+  </select>
 
      <insert id="insertEmp" parameterType="wx.realware.grp.pt.pb.bean.model.Employee" useGeneratedKeys="true" keyProperty="id">
         insert into employee(lastName,email,gender,d_id) values (#{lastName},#{email},#{gender},#{d_id})
     </insert>
+   <insert id="save"  parameterType="wx.realware.grp.pt.pb.bean.model.Employee">
+       insert into employee(lastName,email,gender,d_id) values (#{lastName},#{email},#{gender},#{d_id})
+   </insert>
+
+    <insert id="batchSave"  parameterType="wx.realware.grp.pt.pb.bean.model.Employee">
+        insert into employee(lastName,email,gender,d_id) values (#{lastName},#{email},#{gender},#{d_id})
+    </insert>
+    <update id="update" parameterType="wx.realware.grp.pt.pb.bean.model.Employee">
+
+        update employee set  lastName=#{lastName}    where id =#{id}
+
+    </update>
+     <delete id="delete" parameterType="wx.realware.grp.pt.pb.bean.model.Employee">
+
+         delete from employee     where id =#{id}
+     </delete>
 
 </mapper>

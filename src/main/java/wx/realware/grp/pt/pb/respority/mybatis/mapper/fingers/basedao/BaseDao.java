@@ -13,6 +13,7 @@ public interface BaseDao <T> {
    void save(T t);
    void save(Map<String,Object> map);
    void batchSave(List<T> list);
+   //返回值类型可以为 Boolean Long Integer,以及对应的基本类型
    int  update(T t);
    int  update(Map<String,Object> map);
    int  batchUpdate(List<T> list);

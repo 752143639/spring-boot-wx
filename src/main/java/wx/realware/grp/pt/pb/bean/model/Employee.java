@@ -1,8 +1,13 @@
 package wx.realware.grp.pt.pb.bean.model;
 
+import org.hibernate.validator.constraints.NotBlank;
+import wx.realware.grp.pt.pb.common.avlid.group.AddGroup;
+import wx.realware.grp.pt.pb.common.avlid.group.UpdateGroup;
+
 public class Employee {
     private int id;
     private String email;
+    @NotBlank(message = "用户名不能为空")
     private String lastName;
     private int gender;
     private int  d_id;
