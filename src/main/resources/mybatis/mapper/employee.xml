@@ -2,39 +2,42 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
 <mapper namespace="wx.realware.grp.pt.pb.respority.mybatis.mapper.fingers.EmployeeDao">
-    <!--
-    namespace:命名空间(接口使用时，指定接口名称)
-    id：唯一标示（接口使用时，指定接口方法）
-    resultType：返回值类型
-    #{xx}:从传过来的参数中xx属性取值
-    -->
+<!--
+namespace:命名空间(接口使用时，指定接口名称)
+id：唯一标示（接口使用时，指定接口方法）
+resultType：返回值类型
+#{xx}:从传过来的参数中xx属性取值
+-->
 <!--配置型mybits-->
- <select id="query"   databaseId="mysql">
-      select * from employee where id =#{id}
+ <select id="query" resultType="wx.realware.grp.pt.pb.bean.model.Employee">
+       select * from employee
+     <!--trim： prefixOverrides后缀字符串覆盖 -->
+     <trim suffixOverrides="and">
+       <where>
+           <if test="id !=null">
+               and id=#{id}
+           </if>
+            <if test="lastName !=null  and lastName.trim() !=''">
+                and last_name=#{lastName} and
+            </if>
+
+       </where>
+     </trim>
  </select>
-    <select id="getEmpByid"  resultType="wx.realware.grp.pt.pb.bean.model.Employee" databaseId="mysql">
-        select * from employee where id =#{id}
-  </select>
 
-     <insert id="insertEmp" parameterType="wx.realware.grp.pt.pb.bean.model.Employee" useGeneratedKeys="true" keyProperty="id">
-        insert into employee(lastName,email,gender,d_id) values (#{lastName},#{email},#{gender},#{d_id})
-    </insert>
-   <insert id="save"  parameterType="wx.realware.grp.pt.pb.bean.model.Employee">
-       insert into employee(lastName,email,gender,d_id) values (#{lastName},#{email},#{gender},#{d_id})
-   </insert>
+<select id="queryOne" resultType="wx.realware.grp.pt.pb.bean.model.Employee">
+    select
+    ${fileds}
+    from employee
+      where
 
-    <insert id="batchSave"  parameterType="wx.realware.grp.pt.pb.bean.model.Employee">
-        insert into employee(lastName,email,gender,d_id) values (#{lastName},#{email},#{gender},#{d_id})
-    </insert>
-    <update id="update" parameterType="wx.realware.grp.pt.pb.bean.model.Employee">
+    <foreach collection="map" item="id"  index="key" separator="and">
+          ${key} =#{id}
+    </foreach>
 
-        update employee set  lastName=#{lastName}    where id =#{id}
-
-    </update>
-     <delete id="delete" parameterType="wx.realware.grp.pt.pb.bean.model.Employee">
-
-         delete from employee     where id =#{id}
-     </delete>
-
+</select>
 </mapper>
+

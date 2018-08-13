@@ -7,7 +7,7 @@ import wx.realware.grp.pt.pb.common.avlid.group.UpdateGroup;
 public class Employee {
     private int id;
     private String email;
-    @NotBlank(message = "用户名不能为空")
+  //  @NotBlank(message = "用户名不能为空")
     private String lastName;
     private int gender;
     private int  d_id;
@@ -28,13 +28,6 @@ public class Employee {
         this.email = email;
     }
 
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
 
     public int getGender() {
         return gender;
@@ -52,7 +45,6 @@ public class Employee {
         this.d_id = d_id;
     }
 
-
     @Override
     public String toString() {
         return "Employee{" +
@@ -62,5 +54,13 @@ public class Employee {
                 ", gender=" + gender +
                 ", d_id=" + d_id +
                 '}';
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 }

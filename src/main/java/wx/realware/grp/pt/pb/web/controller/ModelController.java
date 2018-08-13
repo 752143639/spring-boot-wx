@@ -41,16 +41,21 @@ public class ModelController {
      */
     @ResponseBody
     @RequestMapping(method = RequestMethod.GET ,value = "/hello/{id}")
-    public String getEmp(@PathVariable("id")   int id){
+    public String getEmp(@PathVariable("id")   int id) throws  Exception{
+         try{
+             Employee employee = employeeMapper.getEmpByid(id);
+             logger.info(employee.toString());
 
-        Employee employee = employeeMapper.getEmpByid(id);
-        logger.info(employee.toString());
+         }catch (Exception e){
+            logger.info("11",e);
+         }
+
         return  "Hello";
 
     }
 
   @RequestMapping(value = "/abc")
-    public ModelAndView getModel(Model model){
+    public ModelAndView getModel(Model model) {
       model.addAttribute("msg","您好");
       logger.info(persion.toString());
         return new ModelAndView("sucess");
@@ -74,5 +79,57 @@ public class ModelController {
         logger.info(persion.toString());
         writer.write("wo们的中国abc");
     }
+
+    /**
+     * 插入
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "/insert")
+    public String insert(Model model){
+        Employee employee =new Employee();
+        employee.setGender(12);
+        employeeMapper.save(employee);
+        return  "sucess";
+    }
+
+    /**
+     * 删除
+     * @param
+     * @return
+     */
+    @RequestMapping(value = "/delete/")
+    public String delete(@PathVariable("id") int id){
+
+        employeeMapper.delete(id);
+        return  "sucess";
+    }
+    /**
+     * 查询
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "/select/{id}")
+    public String select(@PathVariable("id") int id,Model model){
+
+       Employee employee= employeeMapper.query(id);
+        model.addAttribute("name",employee.getLastName());
+        return  "sucess";
+    }
+    /**
+     * 更新
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "/delete")
+    public String update(@PathVariable("id") int id,Model model){
+        Employee employee =new Employee();
+        employee.setLastName("update");
+
+       int i = employeeMapper.update(employee);
+        model.addAttribute("name",i );
+        return  "sucess";
+    }
+
 
 }

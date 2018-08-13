@@ -65,7 +65,15 @@
           数据库列名 A_COLUMN
            Java 属性名 aColumn
         -->
+        <!--针对Oracle插入null数据失败：mybatis使用的jdbcType.other，oracle无法识别，修改后改为jdbcType.NUll-->
+        <setting name="jdbcTypeForNull" value="NULL"></setting>
+        <!--懒加载-->
+        <setting name="lazyLoadingEnabled" value="true"></setting>
+        <!--侵入lazyLoadingEnabled-->
+        <setting name="aggressiveLazyLoading" value="false"></setting>
         <setting name="mapUnderscoreToCamelCase" value="true"/>
+
+        <setting name="logImpl" value="STDOUT_LOGGING"></setting>
     </settings>
    <!--通配多数据库厂商sql-->
     <databaseIdProvider type="DB_VENDOR">

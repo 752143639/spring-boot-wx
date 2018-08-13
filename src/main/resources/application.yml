@@ -37,6 +37,13 @@ spring:
 mybatis:
   config-location: classpath:mybatis/mybatis.xml
   mapper-locations: classpath:mybatis/mapper/*.xml
+#  configuration:
+#    aggressive-lazy-loading: false
+#    lazy-loading-enabled: true
+#    jdbc-type-for-null: null
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#    map-underscore-to-camel-case: true
+
 #server配置
 server:
    #tomcat配置
