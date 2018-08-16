@@ -56,6 +56,12 @@ server:
  #context-path: /realware
   connection-timeout: 5000
   context-path: /realware
+#mybatis 分页脚本
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: truecount=countSql
+  params: count=countSql
    #初始化脚本设置
    #    schema:
    #      - classpath:department.sql

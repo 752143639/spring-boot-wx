@@ -1,5 +1,6 @@
 package wx.realware.grp.pt.pb.respority.service.impl;
 
+import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -24,36 +25,43 @@ public class CommonServiceImpl  implements CommonService{
     IsmartService ismartService;
     @Transactional(propagation = Propagation.REQUIRED)
     public  void crdl(){
-        Employee employee=new Employee();
-        employee.setD_id(1);
-        employee.setId(1);
-        employee.setLastName("lfq");
-       // System.out.println("update ...."+employeeMapper.update(employee));
-       // System.out.println("delete ...."+employeeMapper.delete(9));
-     //   Employee employee1 = employeeMapper.query(employee);
 
-     //  System.out.println(employee1.toString());
-        Map<String,Object> conditionMap=new HashMap<String,Object>();
-         conditionMap.put("id","1");
-        conditionMap.put("d_id","1");
-        String fileds="last_name,id,d_id";
-        Employee employee2 = employeeMapper.queryOne(conditionMap,fileds);
+                    Map<String,Object> conditionMap=new HashMap<String,Object>();
+                    conditionMap.put("id","1");
+                    conditionMap.put("d_id","1");
+                    String fileds="last_name,id,d_id";
+                    Employee employee2=null;
+                    try {
+                        PageHelper.startPage(1,4);
+                        
+                    employee2 = employeeMapper.queryOne(conditionMap,fileds);
+                    System.out.println(employee2.toString());
 
-        System.out.println(employee2.toString());
-//        Employee s=new Employee();
-//
-//        s.setEmail("update77");
-//
-//        s.setLastName("nameup77");
-//        ismartService.newExecute(new IsmartServiceExecute() {
-//            @Override
-//            public void doExcute() {
-//                employeeMapper.save(s);
-//            }
-//        });
+
+                        Thread.sleep(15000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+                    Employee employee3 = employeeMapper.queryOne(conditionMap,fileds);
+                    System.out.println( employee2==employee3);
+                    System.out.println(employee3.toString());
+        }
+
+    @Transactional(propagation = Propagation.REQUIRED)
+    public  void update(){
+
+        Employee employee2=new Employee();
+        employee2.setId(1);
+        employee2.setLastName("updatelfq..");
+        employeeMapper.update(employee2);
+        System.out.println("...........................");
+
+    }
+
 
 
 
     }
 
-}
+
