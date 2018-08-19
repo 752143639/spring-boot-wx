@@ -73,7 +73,8 @@
         <!--侵入lazyLoadingEnabled-->
         <setting name="aggressiveLazyLoading" value="false"></setting>
         <setting name="mapUnderscoreToCamelCase" value="true"/>
-
+        <!--开启二级缓存，二级缓存暂定redis中间件-->
+        <setting name="cacheEnabled" value="true"></setting>
         <setting name="logImpl" value="STDOUT_LOGGING"></setting>
     </settings>
 

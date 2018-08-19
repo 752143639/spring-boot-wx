@@ -30,7 +30,15 @@ resultType：返回值类型
 
 <select id="queryOne" resultType="wx.realware.grp.pt.pb.bean.model.Employee">
     select
-    ${fileds}
+     <choose>
+         <when test="fileds !=null">
+             ${fileds}
+         </when>
+         <otherwise>
+             *
+         </otherwise>
+     </choose>
+
     from employee
       where
 

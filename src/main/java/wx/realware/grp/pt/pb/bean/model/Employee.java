@@ -4,7 +4,9 @@ import org.hibernate.validator.constraints.NotBlank;
 import wx.realware.grp.pt.pb.common.avlid.group.AddGroup;
 import wx.realware.grp.pt.pb.common.avlid.group.UpdateGroup;
 
-public class Employee {
+import java.io.Serializable;
+
+public class Employee implements Serializable {
     private int id;
     private String email;
   //  @NotBlank(message = "用户名不能为空")

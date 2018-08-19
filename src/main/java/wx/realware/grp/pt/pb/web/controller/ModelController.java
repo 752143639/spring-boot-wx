@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import wx.realware.grp.pt.pb.bean.model.Employee;
 import wx.realware.grp.pt.pb.properties.config.Persion;
 import wx.realware.grp.pt.pb.respority.mybatis.mapper.fingers.EmployeeDao;
+import wx.realware.grp.pt.pb.respority.service.impl.CommonServiceImpl;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -31,6 +32,8 @@ public class ModelController {
     private EmployeeDao employeeMapper;
     @Value("${persion.name}")
     private  String name;
+    @Autowired
+    CommonServiceImpl commonService;
     @Autowired
     private Persion persion;
    private Logger logger=LoggerFactory.getLogger(ModelController.class);
@@ -81,15 +84,18 @@ public class ModelController {
     }
 
     /**
-     * 插入
-     * @param model
+     * 查询
+     * @param
      * @return
      */
-    @RequestMapping(value = "/insert")
-    public String insert(Model model){
-        Employee employee =new Employee();
-        employee.setGender(12);
-        employeeMapper.save(employee);
+    @RequestMapping(value = "/select/{id}")
+    public String insert(@PathVariable("id")  int id){
+        try{
+            commonService.select(id);
+        }catch(Exception e){
+            logger.info("e",e);
+        }
+
         return  "sucess";
     }
 
@@ -104,18 +110,18 @@ public class ModelController {
         employeeMapper.delete(id);
         return  "sucess";
     }
-    /**
-     * 查询
-     * @param model
-     * @return
-     */
-    @RequestMapping(value = "/select/{id}")
-    public String select(@PathVariable("id") int id,Model model){
-
-       Employee employee= employeeMapper.query(id);
-        model.addAttribute("name",employee.getLastName());
-        return  "sucess";
-    }
+//    /**
+//     * 查询
+//     * @param model
+//     * @return
+//     */
+//    @RequestMapping(value = "/select/{id}")
+//    public String select(@PathVariable("id") int id,Model model){
+//
+//       Employee employee= employeeMapper.query(id);
+//        model.addAttribute("name",employee.getLastName());
+//        return  "sucess";
+//    }
     /**
      * 更新
      * @param model

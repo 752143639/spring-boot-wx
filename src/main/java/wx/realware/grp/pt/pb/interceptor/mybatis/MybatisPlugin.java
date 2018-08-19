@@ -4,6 +4,8 @@ import org.apache.ibatis.executor.statement.StatementHandler;
 import org.apache.ibatis.plugin.*;
 import org.apache.ibatis.reflection.MetaObject;
 import org.apache.ibatis.reflection.SystemMetaObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.Statement;
 import java.util.Properties;
@@ -15,6 +17,7 @@ import java.util.Properties;
         {@Signature(type = StatementHandler.class,method ="parameterize",args = Statement.class)}
 )
 public class MybatisPlugin   implements Interceptor{
+    private Logger log= LoggerFactory.getLogger(MybatisPlugin.class);
     /**
      * 拦截方法
      * @param invocation
@@ -27,8 +30,8 @@ public class MybatisPlugin   implements Interceptor{
         //target元数据
          MetaObject metaObject= SystemMetaObject.forObject(targer);
          //statment执行sql参数值
-         Object value= metaObject.getValue("getParameterObject");
-        System.out.println("参数执行值："+value);
+         Object value= metaObject.getValue("parameterHandler.parameterObject");
+       log.info("参数执行值："+value);
         // metaObject.setValue("getParameterObject",2);
         //执行目标方法
        Object object = invocation.proceed();
