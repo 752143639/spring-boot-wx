@@ -7,7 +7,7 @@ import wx.realware.grp.pt.pb.TransactionManagement.IsmartServiceExecute;
 /**
  * 小事务
  */
-@Service
+@Service("wx.realware.grp.pt.pb.TransactionManagement.impl.ISmartServiceImpl")
 public class ISmartServiceImpl implements IsmartService {
 
     @Override

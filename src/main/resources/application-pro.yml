@@ -3,7 +3,7 @@ spring:
   datasource:
     username: root
     password: 12345
-    url: jdbc:mysql://192.168.3.7:3306/mysql?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
+    url: jdbc:mysql://192.168.3.9:3306/mysql?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
     driver-class-name: com.mysql.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
 #    schema:

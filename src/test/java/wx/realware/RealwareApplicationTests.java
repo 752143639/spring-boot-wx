@@ -8,6 +8,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import wx.realware.grp.pt.pb.respority.mybatis.mapper.fingers.EmployeeDao;
 import wx.realware.grp.pt.pb.respority.service.impl.CommonServiceImpl;
+import wx.realware.wx.token.job.AutoAccessTokenJob;
 
 import javax.sql.DataSource;
 
@@ -22,6 +23,9 @@ public class RealwareApplicationTests {
 	EmployeeDao employeeMapper;
 	@Autowired
 	CommonServiceImpl commonService;
+
+	@Autowired
+	AutoAccessTokenJob job;
 	@Test
 	public void contextLoads() {
 		System.out.println(dataSource.getClass());
@@ -39,6 +43,13 @@ public class RealwareApplicationTests {
 	public  void crdl2(){
 
 		commonService.update();
+
+	}
+
+	@Test
+	public  void setJobTest(){
+
+		job.pringTest();
 
 	}
 }

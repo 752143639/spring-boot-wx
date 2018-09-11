@@ -7,6 +7,7 @@ import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.ContentNegotiationConfigurer;
  import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
+import java.io.Serializable;
 import java.nio.charset.Charset;
 import java.util.List;
 
@@ -14,7 +15,7 @@ import java.util.List;
  * 通用自定义配置
  */
 @Configuration
-public class CustomerCharSetWebMvcConfiguer extends WebMvcConfigurerAdapter {
+public class CustomerCharSetWebMvcConfiguer extends WebMvcConfigurerAdapter  implements Serializable{
     /**
      * 中文乱码配置
      * @return
