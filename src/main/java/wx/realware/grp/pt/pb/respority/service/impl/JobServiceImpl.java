@@ -26,6 +26,7 @@ public class JobServiceImpl implements JobService {
     /**
      * 启动自动任务
      */
+    @Override
   public void start(){
       List<QuartJobEntity>quartJobEntities=  this.getQuartList();
      if(CollectionUtils.isListEmpty(quartJobEntities)){
@@ -52,8 +53,10 @@ public class JobServiceImpl implements JobService {
         conditionPart.setFieldValue("1");
         Condition condition=new Condition();
         condition.addPars(conditionPart);
-        Ctrter<QuartJobEntity> ctrter=new Ctrter<QuartJobEntity>();
+        Ctrter<QuartJobEntity> ctrter=new Ctrter<QuartJobEntity>(QuartJobEntity.class);
         ctrter.addCondition(condition.getCondition());
+        //获取查询sql语句
+        ctrter.setSelectSql();
         List<QuartJobEntity> quartJobEntities = quartDao.queryList(ctrter);
         return  quartJobEntities;
     }

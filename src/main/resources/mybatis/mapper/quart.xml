@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="wx.realware.grp.pt.pb.respority.mybatis.mapper.fingers.jobdao.QuartDao">
+<!--
+namespace:命名空间(接口使用时，指定接口名称)
+id：唯一标示（接口使用时，指定接口方法）
+resultType：返回值类型
+#{xx}:从传过来的参数中xx属性取值
+-->
+<!--配置型mybits-->
+ <select id="query" resultType="wx.realware.grp.pt.pb.entry.job.QuartJobEntity">
+      #{ctrter.selectSql}
+ </select>
+
+
+</mapper>
+

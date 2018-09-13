@@ -62,7 +62,7 @@ public class QuartJobEntity implements Serializable {
      *注解
      */
     @Column(value = "remark")
-    private  long remark;
+    private  String remark;
 
     /**
      * 执行类型  同一个库的时候  1： 只有一台机器能执行 2：多台机器执行
@@ -156,11 +156,11 @@ public class QuartJobEntity implements Serializable {
         this.delaytime = delaytime;
     }
 
-    public long getRemark() {
+    public String getRemark() {
         return remark;
     }
 
-    public void setRemark(long remark) {
+    public void setRemark(String remark) {
         this.remark = remark;
     }
 

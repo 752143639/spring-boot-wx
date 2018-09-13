@@ -10,6 +10,8 @@ import wx.realware.grp.pt.pb.interconfig.Table;
 
 import java.io.Serializable;
  import java.lang.reflect.Field;
+ import java.lang.reflect.ParameterizedType;
+ import java.lang.reflect.Type;
  import java.util.*;
 
 /**
@@ -23,7 +25,7 @@ public class Ctrter <T> implements Serializable,Operator {
      * 默认字段名称
      */
     private String fields [];
-    private T obj;
+    private Class obj;
     private String updateSql;
     private String selectSql;
     private String insertSql;
@@ -38,9 +40,6 @@ public class Ctrter <T> implements Serializable,Operator {
      * @return
      */
     private String tableName ;
-    public Ctrter() {
-
-    }
 
     public void addCondition(Map cons){
          this.condition=cons;
@@ -51,18 +50,25 @@ public class Ctrter <T> implements Serializable,Operator {
      * @param fields
      * @param tableName
      */
-    public Ctrter( T obj,String[] fields,String tableName) {
+    public Ctrter( Class obj,String[] fields,String tableName) {
         this.fields = fields;
         this.obj=obj;
         this.tableName=tableName;
     }
 
+    public Ctrter( ) {
+
+    }
+    public Ctrter( Class t ) {
+     this.obj=t;
+    }
     /**
      * 获取表明
      * @param
      * @return
      */
     public String getTableName( ){
+
         Class<?> cl= this.obj.getClass();
         String tableName="";
          //表名
@@ -198,15 +204,15 @@ public class Ctrter <T> implements Serializable,Operator {
         return updateSql;
     }
 
-    public void setUpdateSql(String updateSql) {
+    public void setUpdateSql() {
         this.updateSql = this.updateSql();
     }
 
-    public void setSelectSql(String selectSql) {
+    public void setSelectSql() {
         this.selectSql = this.selectSql();
     }
 
-    public void setInsertSql(String insertSql) {
+    public void setInsertSql() {
         this.insertSql = this.insertSql();
     }
 
@@ -214,7 +220,7 @@ public class Ctrter <T> implements Serializable,Operator {
         return deleteSql;
     }
 
-    public void setDeleteSql(String deleteSql) {
+    public void setDeleteSql() {
         this.deleteSql = this.deleteSql();
     }
 }
