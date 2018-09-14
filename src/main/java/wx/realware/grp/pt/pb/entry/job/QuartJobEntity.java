@@ -67,20 +67,24 @@ public class QuartJobEntity implements Serializable {
     /**
      * 执行类型  同一个库的时候  1： 只有一台机器能执行 2：多台机器执行
      */
+    @Column(value = "exe_type")
     private int exe_type;
     /**
      * 最后一次操作的时间
      */
+    @Column(value = "last_op_date")
     private String last_op_date;
 
     /**
      * 是否当前正在执行(针对于只有一个机器能执行的任务)
      */
+    @Column(value = "is_cur_exe")
     private int is_cur_exe;
 
     /**
      * 最大超时时间（单位： 分钟）
      */
+    @Column(value = "max_exe_time")
     private int max_exe_time;
 
 

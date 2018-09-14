@@ -8,7 +8,7 @@ import java.lang.annotation.*;
  * time：20180823
  */
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.TYPE, ElementType.FIELD,ElementType.METHOD})
+@Target({ElementType.FIELD})
 @Documented
 public @interface Column {
     String  value() default "";

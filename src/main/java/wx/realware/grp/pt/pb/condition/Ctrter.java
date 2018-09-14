@@ -69,7 +69,7 @@ public class Ctrter <T> implements Serializable,Operator {
      */
     public String getTableName( ){
 
-        Class<?> cl= this.obj.getClass();
+        Class<?> cl= this.obj;
         String tableName="";
          //表名
         if(cl.isAnnotationPresent(Table.class) && StringUtils.isBlank(this.tableName)  ){
@@ -85,9 +85,9 @@ public class Ctrter <T> implements Serializable,Operator {
     /**
      * 获取字段名称
      */
-    public String [] getFields(){
-         String[] fields={};
-        Class<?> cl= this.obj.getClass();
+    public Object [] getFields(){
+        Object[] fields=null;
+        Class<?> cl= this.obj;
         List fieldList=new ArrayList<String> ();
         Field[] declaredFields = cl.getDeclaredFields();
          if(declaredFields[0].isAnnotationPresent(Column.class) && ArrayUtils.isEmpty(this.fields)){
@@ -95,7 +95,7 @@ public class Ctrter <T> implements Serializable,Operator {
                  String columnName= field.getAnnotation(Column.class).value();
                  fieldList.add(columnName);
              }
-             fields=(String[]) fieldList.toArray();
+              fields=  fieldList.toArray();
          }else if( ArrayUtils.isNotEmpty(this.fields)){
              fields=this.fields;
          }else{
@@ -110,10 +110,10 @@ public class Ctrter <T> implements Serializable,Operator {
      * 通用updateSql拼装
      * @return
      */
-  public String updateSql(){
+  public String updateSql(T object){
        StringBuffer upbf=new StringBuffer();
        upbf.append(Operator.update).append(Operator.blank);
-       Class<?> cl= this.obj.getClass();
+       Class<?> cl= this.obj;
 
       Field[] declaredFields = cl.getDeclaredFields();
       //表名
@@ -124,7 +124,7 @@ public class Ctrter <T> implements Serializable,Operator {
 
               Column  column=  filed.getAnnotation(Column.class);
               String colName=column.value();
-              Object colValue=  PlatformUtil.getProperty(this.obj,filed.getName());
+              Object colValue=  PlatformUtil.getProperty(object,filed.getName());
               //日期格式处理
               if(colValue !=null && colValue instanceof Date){
                  Date dateValue=(Date)colValue;
@@ -159,8 +159,8 @@ public class Ctrter <T> implements Serializable,Operator {
    public String selectSql(){
        StringBuffer tempSql=new StringBuffer();
        tempSql.append(Operator.select).append(Operator.blank);
-        String []fields=this.getFields();
-        for(String field:fields){
+       Object []fields=this.getFields();
+        for(Object field:fields){
             tempSql.append(Operator.blank+field+Operator.sperator+Operator.blank);
         }
        String selectSql=tempSql.toString().substring(0,tempSql.toString().lastIndexOf(Operator.sperator));
@@ -174,13 +174,13 @@ public class Ctrter <T> implements Serializable,Operator {
      * @return
      */
 
-    public String insertSql(){
+    public String insertSql( T object){
          StringBuffer tempSql=new StringBuffer();
         String tableName=this.getTableName();
         tempSql.append(Operator.insert).append(Operator.blank).append(Operator.into).append(Operator.blank).append(tableName).append(Operator.blank)
         .append(Operator.leftBracket).append(Operator.blank);
-        String []fields=this.getFields();
-        for(String field:fields){
+        Object []fields=this.getFields();
+        for(Object field:fields){
             tempSql.append(Operator.blank+field+Operator.sperator+Operator.blank);
         }
         String insertSql=tempSql.toString().substring(0,tempSql.toString().lastIndexOf(Operator.sperator));
@@ -204,16 +204,17 @@ public class Ctrter <T> implements Serializable,Operator {
         return updateSql;
     }
 
-    public void setUpdateSql() {
-        this.updateSql = this.updateSql();
+    public void setUpdateSql(T object) {
+        this.updateSql = this.updateSql(object);
     }
 
     public void setSelectSql() {
         this.selectSql = this.selectSql();
     }
 
-    public void setInsertSql() {
-        this.insertSql = this.insertSql();
+    public void setInsertSql(T object) {
+
+        this.insertSql = this.insertSql(object);
     }
 
     public String getDeleteSql() {
