@@ -6,7 +6,7 @@ debug：当此属性设置为true时，将打印出logback内部日志信息，�
 -->
 <configuration scan="false" scanPeriod="60 seconds" debug="false">
     <!-- 定义日志的根目录 -->
-    <property name="LOG_HOME" value="/logs/wxlog" />
+    <property name="LOG_HOME" value="D:\\logs\\wxlog" />
     <!-- 定义日志文件名称 -->
     <property name="appName" value="info"></property>
     <!-- ch.qos.logback.core.ConsoleAppender 表示控制台输出 -->
@@ -74,7 +74,7 @@ debug：当此属性设置为true时，将打印出logback内部日志信息，�
     <!-- hibernate logger -->
     <logger name="com" level="debug" />
     <!-- Spring framework logger -->
-    <logger name="org.springframework" level="debug" additivity="false"></logger>
+    <logger name="org.springframework" level="debug" additivity="true"></logger>
 
 
 
