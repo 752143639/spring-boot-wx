@@ -1,14 +1,15 @@
 package wx.realware.grp.pt.pb.common.job;
 
  import org.quartz.*;
- import org.quartz.impl.StdSchedulerFactory;
+import org.quartz.impl.StdSchedulerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
- import java.util.Date;
-
-public class QuartManager {
-    public Logger logger = LoggerFactory.getLogger(QuartManager.class);
+/**
+ * 用于定时任务的创建、删除、修改等操作
+ */
+public class JobManagerAdapter {
+    public  static Logger logger = LoggerFactory.getLogger(JobManagerAdapter.class);
 
 
     /**
@@ -23,26 +24,21 @@ public class QuartManager {
      * @param triggerName  触发器名
      * @param triggerGroupName  触发器组名
      * @param jobClass  任务
-     * @param time  时间设置，参考quartz说明文档
+     * @param cron_expressions  时间设置，参考quartz说明文档
      * @throws SchedulerException
      *
      */
-    public static void addJob(String jobName, String jobGroupName,
+    public static void addPopularJob(String jobName, String jobGroupName,
                               String triggerName, String triggerGroupName, String jobClass,
-                              String time) {
+                              String cron_expressions) {
         try {
             Scheduler sched = gSchedulerFactory.getScheduler();
             Class className = Class.forName(jobClass);
             JobDetail jobDetail =JobBuilder.newJob(className).withIdentity(jobName,jobGroupName).build();
-             //2.0以下版本
-            // new JobDetail(jobName, jobGroupName, Class.forName(jobClass));// 任务名，任务组，任务执行类
-            //new CronTrigger(triggerName, triggerGroupName);// 触发器名,触发器组
-            // 触发器
-            CronTrigger trigger =TriggerBuilder.newTrigger().withIdentity(triggerName,triggerGroupName)
-                    .withSchedule(CronScheduleBuilder.cronSchedule(time)).startNow().build();
+            CronTrigger trigger = QuartzTriggerFactory.getCronTrigger(triggerName,triggerGroupName,cron_expressions);
             sched.scheduleJob(jobDetail,trigger);
          } catch (Exception e) {
-            e.printStackTrace();
+            logger.warn("执行addPopularJob异常",e);
             throw new RuntimeException("创建定时任务：+"+jobName+"失败："+e.getMessage());
         }
     }
@@ -71,7 +67,7 @@ public class QuartManager {
             //加入到调度器中
             sched.scheduleJob(jobDetail, trigger);
         }  catch (Exception e) {
-            e.printStackTrace();
+            logger.warn("执行addSimJob异常",e);
             throw new RuntimeException("创建间隔任务：+"+jobName+"失败："+e.getMessage());
         }
     }
@@ -83,7 +79,7 @@ public class QuartManager {
      * @param triggerGroupName
      * @param time
      */
-    public static void modifyJobTime(String triggerName,
+    public static void modifyPopularJobTime(String triggerName,
                                      String triggerGroupName, String time) {
         try {
             Scheduler sched = gSchedulerFactory.getScheduler();
@@ -100,7 +96,7 @@ public class QuartManager {
                 trigger = trigger.getTriggerBuilder().withIdentity(triggerKey).withSchedule(scheduleBuilder).build();
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.warn("执行modifyPopularJobTime异常",e);
             throw new RuntimeException("修改定时任务触发器："+triggerName+"触发时间失败："+e.getMessage());
         }
     }
@@ -122,7 +118,7 @@ public class QuartManager {
             sched.unscheduleJob(triggerKey);// 移除触发器
             sched.deleteJob(jobKey);// 删除任务
          } catch (Exception e) {
-            e.printStackTrace();
+            logger.warn("执行removeJob异常",e);
             throw new RuntimeException("任务："+jobName+"删除失败：+"+e.getMessage());
         }
     }
@@ -135,7 +131,7 @@ public class QuartManager {
             Scheduler sched = gSchedulerFactory.getScheduler();
             sched.start();
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.warn("执行startJobs异常",e);
             throw new RuntimeException("启动自动任务失败："+e.getMessage());
         }
     }
@@ -150,10 +146,8 @@ public class QuartManager {
                 sched.shutdown();
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.warn("执行shutdownJobs异常",e);
             throw new RuntimeException("关闭自动任务失败："+e.getMessage());
         }
     }
-
-
 }
