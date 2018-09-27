@@ -30,7 +30,7 @@ public class CommonServiceImpl  implements CommonService{
         Map<String,Object> conditionMap=new HashMap<String,Object>();
         conditionMap.put("id","1");
         conditionMap.put("d_id","1");
-        String fileds="last_name,id,d_id";
+        String fileds="lastName,id,d_id";
         Employee employee2=null;
         try {
             PageHelper.startPage(1,4);
