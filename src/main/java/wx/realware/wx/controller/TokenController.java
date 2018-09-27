@@ -1,12 +1,11 @@
-package wx.realware.wx.token.controller;
+package wx.realware.wx.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import wx.realware.grp.pt.pb.respority.service.impl.CommonServiceImpl;
-import wx.realware.wx.token.job.AutoAccessTokenJob;
-import wx.realware.wx.token.util.CheckUtil;
+import wx.realware.wx.job.AutoAccessTokenJob;
+import wx.realware.wx.util.CheckUtil;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

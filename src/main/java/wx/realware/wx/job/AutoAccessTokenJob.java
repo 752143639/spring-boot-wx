@@ -1,4 +1,4 @@
-package wx.realware.wx.token.job;
+package wx.realware.wx.job;
 
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;

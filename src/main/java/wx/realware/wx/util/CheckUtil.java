@@ -1,4 +1,4 @@
-package wx.realware.wx.token.util;
+package wx.realware.wx.util;
 
 import java.security.MessageDigest;
 import java.util.Arrays;
